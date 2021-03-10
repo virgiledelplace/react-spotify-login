@@ -31,7 +31,7 @@ class GitHubLogin extends Component {
       client_id: clientId,
       scope,
       redirect_uri: redirectUri,
-      response_type: 'token'
+      response_type: 'code'
     });
     const popup = this.popup = PopupWindow.open(
       'spotify-authorization',
@@ -51,6 +51,7 @@ class GitHubLogin extends Component {
   }
 
   onSuccess = (data) => {
+    console.log(data)
     if (!data.access_token) {
       return this.onFailure(new Error('\'access_token\' not found'));
     }
